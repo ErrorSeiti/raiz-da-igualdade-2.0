@@ -1,0 +1,13 @@
+[build]
+  publish = "."
+  command = "echo 'Deploy estático - sem build necessário'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/components/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
