@@ -1,5 +1,16 @@
-function Footer({ showToast }) {
+function Footer({ showToast, onEasterEgg }) {
   const currentYear = new Date().getFullYear();
+  const [eggClicks, setEggClicks] = React.useState(0);
+
+  const handleEasterEggClick = () => {
+    setEggClicks(prev => {
+      if (prev + 1 >= 7) {
+        if (onEasterEgg) onEasterEgg();
+        return 0;
+      }
+      return prev + 1;
+    });
+  };
   
   const handleLinkClick = (e, name) => {
     e.preventDefault();
@@ -62,7 +73,7 @@ function Footer({ showToast }) {
         </div>
 
         <div className="border-t border-[var(--azul-base)] pt-6 text-center text-[var(--azul-base-5)] text-xs">
-          <p>© {currentYear} Raiz da Igualdade | Projeto Acadêmico sem fins lucrativos.</p>
+          <p className="cursor-default select-none" onClick={handleEasterEggClick}>© {currentYear} Raiz da Igualdade | Projeto Acadêmico sem fins lucrativos.</p>
         </div>
       </div>
     </footer>
