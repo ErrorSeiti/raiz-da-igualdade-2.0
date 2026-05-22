@@ -38,6 +38,7 @@ class ErrorBoundary extends React.Component {
 function App() {
   const [currentPage, setCurrentPage] = React.useState('home');
   const [toastMessage, setToastMessage] = React.useState(null);
+  const [showGame, setShowGame] = React.useState(false);
 
   const showToast = (msg) => {
     setToastMessage(msg);
@@ -70,7 +71,9 @@ function App() {
         {renderPage()}
       </main>
 
-      <Footer showToast={showToast} />
+      <Footer showToast={showToast} onEasterEgg={() => setShowGame(true)} />
+      
+      {showGame && <HumanRightsGame onClose={() => setShowGame(false)} />}
       
       {/* Assistente de IA para suporte ao usuário */}
       <AIChatAssistant />
